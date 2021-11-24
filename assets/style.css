@@ -1,10 +1,16 @@
-/* General Styles */
+/* GENERAL STYLES */
 * {
     box-sizing: border-box;
 }
 
-/* Sitewide Classes */
+/* SITEWIDE CLASSES */
+/* Style the container */
 .container {
     width: 880px; /* Between 600-1000px is a good mid width for the screen */
     margin: 0 auto; /* centers the text */
+}
+
+/* Hide elements */
+.hide {
+    display: none;
 }
