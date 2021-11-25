@@ -74,7 +74,15 @@ function startGame() {
 
 // Function to display the question with 4 answer choices
 function buildQuestionCard() {
-    console.log(questions);
+    // reference unordered list with class of 'question list' and create list item
+    var questionListEl = document.getElementById('question-list');
+    var questionEl = document.createElement('li');
+    // set text content of unordered list to the questionText property of the questions array
+    questionListEl.textContent = questions[0].questionText;
+    // set the text content of the list item to the choices property of the questions array
+    questionEl.textContent = questions[0].choices;
+    // append the list item element to the end of the unordered list
+    questionListEl.appendChild(questionEl);
 };
 
 // EVENT LISTENERS
