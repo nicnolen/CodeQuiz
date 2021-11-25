@@ -10,6 +10,37 @@ var startBox = document.getElementById('start-box');
 var quizBox = document.getElementById('quiz-box');
 var endBox = document.getElementById('end-box');
 
+// Create a questions array
+var questions = [
+    {
+        questionText: 'question 1',
+        choices: ['a', 'b', 'c', 'd'],
+        answer: 'a'
+    },
+
+    {
+        questionText: 'question 2',
+        choices: ['a', 'b', 'c', 'd'],
+        answer: 'c'
+    },  
+    
+    {
+        questionText: 'question 3',
+        choices: ['a', 'b', 'c', 'd'],
+        answer: 'b'
+    },  
+    
+    {
+        questionText: 'question 4',
+        choices: ['a', 'b', 'c', 'd'],
+        answer: 'a'
+    },  {
+        questionText: 'question 5',
+        choices: ['a', 'b', 'c', 'd'],
+        answer: 'd'
+    },
+];
+
 // FUNCTIONS
 function startGame() {
     // hide header
@@ -25,12 +56,27 @@ function startGame() {
         if(timeLeft <= 0) {
             clearInterval(countdown); // clearInterval stops the countdown function from running
             document.getElementById('timer').textContent = "Time's up!"
-        } else {
-            document.getElementById('timer').textContent = timeLeft + " seconds remaining";
+        } 
+        // if timeLeft is 1, change display the timeLeft and add second
+        else if (timeLeft === 1) {
+            document.getElementById('timer').textContent = timeLeft + ' second remaining'
+        }
+        // if timeLeft is greater than 1, change second to seconds
+        else {
+            document.getElementById('timer').textContent = timeLeft + ' seconds remaining';
         }
         timeLeft--; // decrease the timer by 1 every second (1000ms = 1s)
     }, 1000);
+
+    // add questions
+    buildQuestionCard();
 };
+
+// Function to display the question with 4 answer choices
+function buildQuestionCard() {
+    console.log(questions);
+};
+
 // EVENT LISTENERS
 // Run startGame when the start button is clicked
 startButton.addEventListener('click', startGame);
