@@ -10,6 +10,10 @@ var startBox = document.getElementById('start-box');
 var quizBox = document.getElementById('quiz-box');
 var endBox = document.getElementById('end-box');
 
+// reference unordered list with class of 'question list' and create list item
+var questionListEl = document.getElementById('question-list');
+var questionEl = document.createElement('li');
+
 // Create a questions array
 var questions = [
     {
@@ -69,14 +73,11 @@ function startGame() {
     }, 1000);
 
     // add questions
-    buildQuestionCard();
+    showQuestions();
 };
 
 // Function to display the question with 4 answer choices
-function buildQuestionCard() {
-    // reference unordered list with class of 'question list' and create list item
-    var questionListEl = document.getElementById('question-list');
-    var questionEl = document.createElement('li');
+function showQuestions() {
     // set text content of unordered list to the questionText property of the questions array
     questionListEl.textContent = questions[0].questionText;
     // set the text content of the list item to the choices property of the questions array
@@ -85,6 +86,14 @@ function buildQuestionCard() {
     questionListEl.appendChild(questionEl);
 };
 
+// set the text content of the unordered list to the answer
+function showAnswers() {
+    questionListEl.textContent = questions[0].answer;
+}
+
 // EVENT LISTENERS
 // Run startGame when the start button is clicked
 startButton.addEventListener('click', startGame);
+
+// Run showAnswer when the submit answer button is clicked
+quizButton.addEventListener('click', showAnswers)
