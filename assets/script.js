@@ -78,14 +78,38 @@ function startGame() {
     showQuestions();
 };
 
-// Function to display the question with 4 answer choices
+ // Function to display the question with 4 answer choices
 function showQuestions() {
-    // set text content of unordered list to the questionText property of the questions array
-    questionListEl.textContent = questions[0].questionText;
-    // set the text content of the list item to the choices property of the questions array
-    questionEl.textContent = questions[0].choices;
-    // append the list item element to the end of the unordered list
-    questionListEl.appendChild(questionEl);
+    // variable to store the HTML output
+    var output = [];
+
+    // for each question
+    questions.forEach((currentQuestion, questionNumber) => {
+        
+        // variable to store the answer choices
+        var answerChoices = []
+
+        // for each available answer
+        for (letter in currentQuestion.choices){
+            // add HTML radio button
+            answerChoices.push(
+                `<label>
+                <input type="radio" name="question${questionNumber}" value="${letter}
+                ${letter}:
+                ${currentQuestion.answer[letter]}
+                </label>`
+            );
+        }
+
+        // add this question and its answers to the output
+        output.push(
+            `<div class="question"> ${currentQuestion.questionText} </div>
+            <div class="choices"> ${answerChoices.join('')} </div>`
+        );
+    });
+
+    // combine output list into one string of HTML
+    questionListEl.innerHTML = output.join('');
 };
 
 // set the text content of the unordered list to the answer
