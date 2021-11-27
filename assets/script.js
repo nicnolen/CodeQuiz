@@ -14,6 +14,9 @@ var endBox = document.getElementById('end-box');
 var questionListEl = document.getElementById('question-list');
 var questionEl = document.createElement('li');
 
+ // counter starts counting down from 60 seconds
+ var timeLeft = 60 
+
 // Create a questions array
 var questions = [
     {
@@ -53,9 +56,8 @@ function startGame() {
     startBox.classList.add('hide');
     // unhide quiz box
     quizBox.classList.remove('hide')
-
-    // create a countdown from 60 seconds (60000 milliseconds)
-    var timeLeft = 60 // counter starts counting down from 60 seconds
+    
+    // create a timer that counts down every one second (1000ms) from the timeLeft variable
     var countdown = setInterval(function(){
         if(timeLeft <= 0) {
             clearInterval(countdown); // clearInterval stops the countdown function from running
@@ -88,7 +90,14 @@ function showQuestions() {
 
 // set the text content of the unordered list to the answer
 function showAnswers() {
-    questionListEl.textContent = questions[0].answer;
+    for (i = 0; i < questions.length; i++) {
+        if (questions.choices === questions.answer) {
+            questionListEl.textContent = 'Correct!'
+        } else {
+            questionListEl.textContent = 'The correct answer is ' + questions[i].answer;
+            newTime = timeLeft - 2;
+        }
+    }
 }
 
 // EVENT LISTENERS
