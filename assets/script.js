@@ -48,6 +48,9 @@ var questions = [
     },
 ];
 
+// Variable to store the answer choices
+var answerChoices = [];
+
 // FUNCTIONS
 function startGame() {
     // hide header
@@ -73,7 +76,7 @@ function startGame() {
         }
         timeLeft--; // decrease the timer by 1 every second (1000ms = 1s)
     }, 1000);
-
+    
     // add questions
     showQuestions();
 };
@@ -84,19 +87,15 @@ function showQuestions() {
     var output = [];
 
     // for each question
-    questions.forEach((currentQuestion, questionNumber) => {
-        
-        // variable to store the answer choices
-        var answerChoices = []
-
+    questions.forEach((currentQuestion) => {
         // for each available answer
-        for (letter in currentQuestion.choices){
+        for (var letter of currentQuestion.choices){
             // add HTML radio button
             answerChoices.push(
                 `<label>
-                <input type="radio" name="question${questionNumber}" value="${letter}
+                <input type="radio" name="choices${currentQuestion.choices}" value="${letter}
                 ${letter}:
-                ${currentQuestion.answer[letter]}
+                ${currentQuestion.choices[letter]}
                 </label>`
             );
         }
@@ -104,7 +103,7 @@ function showQuestions() {
         // add this question and its answers to the output
         output.push(
             `<div class="question"> ${currentQuestion.questionText} </div>
-            <div class="choices"> ${answerChoices.join('')} </div>`
+            <div class="choices"> ${answerChoices} </div>`
         );
     });
 
@@ -115,11 +114,13 @@ function showQuestions() {
 // set the text content of the unordered list to the answer
 function showAnswers() {
     for (i = 0; i < questions.length; i++) {
-        if (questions.choices === questions.answer) {
+        if (answerChoices === questions.answer) {
             questionListEl.textContent = 'Correct!'
         } else {
             questionListEl.textContent = 'The correct answer is ' + questions[i].answer;
-            newTime = timeLeft - 2;
+            // subtract 2 seconds for every wrong answer
+            newTime = timeLeft -= 2;
+            document.getElementById('timer').innerHTML='00:'+timeLeft;
         }
     }
 }
