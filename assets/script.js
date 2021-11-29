@@ -163,7 +163,11 @@ function showAnswers() {
         else {
             // color the answers red
             answerContainer[i].style.color = 'red';
+
+            // show correct answer
+            answerContainer[i].innerHTML = 'The correct answer is ' + '<br>' + questions[i].answer;
             // subtract 2 from the timer
+
         }
     }
 
