@@ -8,11 +8,11 @@ var scoreButton = document.querySelector('.score');
 var header = document.querySelector('header');
 var startBox = document.getElementById('start-box');
 var quizBox = document.getElementById('quiz-box');
+var answerBox = document.getElementById('results')
 var endBox = document.getElementById('end-box');
 
 // reference unordered list with class of 'question list' and create list item
 var questionListEl = document.getElementById('question-list');
-var questionEl = document.createElement('li');
 
  // counter starts counting down from 60 seconds
  var timeLeft = 60 
@@ -20,36 +20,56 @@ var questionEl = document.createElement('li');
 // Create a questions array
 var questions = [
     {
-        questionText: 'question 1',
-        choices: ['a', 'b', 'c', 'd'],
+        questionText: 'QUESTION 1: What does the push() method do?',
+        choices: {a: 'adds any content between the parenthesis to the end of the specified array', 
+                b: 'removes the last element of an array and returns that element', 
+                c: 'removes the first element from an array and returns that removed element', 
+                d: 'adds any content between the parenthesis to the start of the specified array'},
         answer: 'a'
     },
 
     {
-        questionText: 'question 2',
-        choices: ['a', 'b', 'c', 'd'],
+        questionText: 'QUESTION 2: ',
+        choices: {
+            a:'', 
+            b: '', 
+            c: '', 
+            d: ''
+        },
         answer: 'c'
     },  
     
     {
-        questionText: 'question 3',
-        choices: ['a', 'b', 'c', 'd'],
+        questionText: 'QUESTION 3:',
+        choices: {
+            a:'', 
+            b: '', 
+            c: '', 
+            d: ''
+        },
         answer: 'b'
     },  
     
     {
-        questionText: 'question 4',
-        choices: ['a', 'b', 'c', 'd'],
+        questionText: 'QUESTION 4:',
+        choices: {
+            a:'', 
+            b: '', 
+            c: '', 
+            d: ''
+        },
         answer: 'a'
     },  {
-        questionText: 'question 5',
-        choices: ['a', 'b', 'c', 'd'],
+        questionText: 'QUESTION 5:',
+        choices: {
+            a:'', 
+            b: '', 
+            c: '', 
+            d: ''
+        },
         answer: 'd'
     },
 ];
-
-// Variable to store the answer choices
-var answerChoices = [];
 
 // FUNCTIONS
 function startGame() {
@@ -85,27 +105,33 @@ function startGame() {
 function showQuestions() {
     // variable to store the HTML output
     var output = [];
-
-    // for each question
-    questions.forEach((currentQuestion) => {
+    // variable to store the answer choices
+    var answerChoices = questions.choices;
+    
+   // for each question...
+	for(var i=0; i<questions.length; i++){
+        
+        // reset the answer choices
+        answerChoices = [];
+        
         // for each available answer
-        for (var letter of currentQuestion.choices){
+        for (var letter in questions[i].choices){
             // add HTML radio button
             answerChoices.push(
-                `<label>
-                <input type="radio" name="choices${currentQuestion.choices}" value="${letter}
-                ${letter}:
-                ${currentQuestion.choices[letter]}
-                </label>`
-            );
+                '<label>'
+					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
+					+ letter + ': '
+					+ questions[i].choices[letter]
+				+ '</label>'
+			);
         }
 
         // add this question and its answers to the output
         output.push(
-            `<div class="question"> ${currentQuestion.questionText} </div>
-            <div class="choices"> ${answerChoices} </div>`
+            '<div class="question">' + questions[i].questionText + '</div>'
+			+ '<div class="answers">' + answerChoices.join('') + '</div>'
         );
-    });
+    }
 
     // combine output list into one string of HTML
     questionListEl.innerHTML = output.join('');
@@ -113,16 +139,36 @@ function showQuestions() {
 
 // set the text content of the unordered list to the answer
 function showAnswers() {
+    // gather answer containers from the quiz
+    var answerContainer = quizBox.querySelectorAll('.answers')
+
+    // keep track of user answers
+    var userAnswer = '';
+    var numCorrect = 0;
+
+    // for each question
     for (i = 0; i < questions.length; i++) {
-        if (answerChoices === questions.answer) {
-            questionListEl.textContent = 'Correct!'
-        } else {
-            questionListEl.textContent = 'The correct answer is ' + questions[i].answer;
-            // subtract 2 seconds for every wrong answer
-            newTime = timeLeft -= 2;
-            document.getElementById('timer').innerHTML='00:'+timeLeft;
+        // find selected answer
+        userAnswer = (answerContainer[i].querySelector('input[name=question'+i+']:checked') || {}).value;
+
+        // if the answer is correct
+        if (userAnswer === questions[i].answer) {
+            // add to the number correct
+            numCorrect ++;
+
+            // color the answers green
+            answerContainer[i].style.color = 'lightgreen';
+        }
+        // if the answer is wrong or blank
+        else {
+            // color the answers red
+            answerContainer[i].style.color = 'red';
+            // subtract 2 from the timer
         }
     }
+
+    // show number of correct answers out of total
+    endBox.innerHTML = numCorrect + ' out of ' + questions.length;
 }
 
 // EVENT LISTENERS
