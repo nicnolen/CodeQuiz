@@ -11,63 +11,64 @@ var quizBox = document.getElementById('quiz-box');
 var answerBox = document.getElementById('results')
 var endBox = document.getElementById('end-box');
 
-// reference unordered list with class of 'question list' and create list item
+// Reference unordered list with class of 'question list' and create list item
 var questionListEl = document.getElementById('question-list');
 
- // counter starts counting down from 60 seconds
- var timeLeft = 60 
+// Counter starts counting down from 60 seconds
+var timeLeft = 60
 
 // Create a questions array
 var questions = [
     {
         questionText: 'QUESTION 1: What does the push() method do?',
-        choices: {a: 'adds any content between the parenthesis to the end of the specified array', 
-                b: 'removes the last element of an array and returns that element', 
-                c: 'removes the first element from an array and returns that removed element', 
-                d: 'adds any content between the parenthesis to the start of the specified array'},
+        choices: {
+            a: 'Adds any content between the parenthesis to the end of the specified array', 
+            b: 'Removes the last element of an array and returns that element', 
+            c: 'Removes the first element from an array and returns that removed element', 
+            d: 'Adds any content between the parenthesis to the start of the specified array'},
         answer: 'a'
     },
 
     {
-        questionText: 'QUESTION 2: ',
+        questionText: 'QUESTION 2: What does the parseInt() function do?',
         choices: {
-            a:'', 
-            b: '', 
-            c: '', 
-            d: ''
+            a:'Converts a number to a JSON string', 
+            b: 'Converts a number to a string', 
+            c: 'Converts a string to a number', 
+            d: 'Converts a JSON string to a number'
         },
         answer: 'c'
     },  
     
     {
-        questionText: 'QUESTION 3:',
+        questionText: 'QUESTION 3: What is JavaScript responsible for on a webpage?',
         choices: {
-            a:'', 
-            b: '', 
-            c: '', 
-            d: ''
+            a:'The structure of the page', 
+            b: 'The design of the page', 
+            c: 'Version control', 
+            d: 'The behavior of the page'
         },
-        answer: 'b'
+        answer: 'd'
     },  
     
     {
-        questionText: 'QUESTION 4:',
+        questionText: 'QUESTION 4: How do you save array data to localStorage?',
         choices: {
-            a:'', 
-            b: '', 
-            c: '', 
-            d: ''
-        },
-        answer: 'a'
-    },  {
-        questionText: 'QUESTION 5:',
-        choices: {
-            a:'', 
-            b: '', 
-            c: '', 
-            d: ''
+            a:'setItem()', 
+            b: 'getItem', 
+            c: 'JSON.stringify(array)', 
+            d: 'Both A and C'
         },
         answer: 'd'
+    },  {
+        questionText: 'QUESTION 5: What are the components of .addEventListener and what order do they go in?',
+        choices: {
+            a:'(eventListener, eventHandler)', 
+            b: '(eventHandler, eventListener)', 
+            c: '(event, function())', 
+            d: '(event, eventListener)'
+        },
+        answer: 'a'
     },
 ];
 
@@ -122,14 +123,14 @@ function showQuestions() {
 					+ '<input type="radio" name="question'+i+'" value="'+letter+'">'
 					+ letter + ': '
 					+ questions[i].choices[letter]
-				+ '</label>'
+				+ '</label>' + '</br>'
 			);
         }
 
         // add this question and its answers to the output
         output.push(
             '<div class="question">' + questions[i].questionText + '</div>'
-			+ '<div class="answers">' + answerChoices.join('') + '</div>'
+			+ '<div class="options">' + answerChoices.join('') + '</div>'
         );
     }
 
@@ -140,7 +141,7 @@ function showQuestions() {
 // set the text content of the unordered list to the answer
 function showAnswers() {
     // gather answer containers from the quiz
-    var answerContainer = quizBox.querySelectorAll('.answers')
+    var answerContainer = quizBox.querySelectorAll('.options')
 
     // keep track of user answers
     var userAnswer = '';
@@ -153,6 +154,9 @@ function showAnswers() {
 
         // if the answer is correct
         if (userAnswer === questions[i].answer) {
+            // say correct
+            questionListEl.textContent = 'Correct!'
+
             // add to the number correct
             numCorrect ++;
 
@@ -161,12 +165,14 @@ function showAnswers() {
         }
         // if the answer is wrong or blank
         else {
+            // say what the correct answer is
+            questionListEl.textContent = 'Incorrect, the correct answer is ' + questions.answer;
+            
             // color the answers red
             answerContainer[i].style.color = 'red';
 
-            // show correct answer
-            answerContainer[i].innerHTML = 'The correct answer is ' + '<br>' + questions[i].answer;
-            // subtract 2 from the timer
+            // subtract 2 seconds for each incorrect answer
+            timeLeft -= 2;
 
         }
     }
