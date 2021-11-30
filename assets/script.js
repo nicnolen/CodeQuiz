@@ -1,7 +1,8 @@
 // GLOBAL VARIABLES
 // Tie buttons into index.html
 var startButton = document.querySelector('.start');
-var quizButton = document.querySelector('.answer');
+var newQuestionButton = document.querySelector('.question')
+var answerButton = document.querySelector('.answer');
 var scoreButton = document.querySelector('.score');
 
 // Tie boxes into index.html
@@ -60,7 +61,9 @@ var questions = [
             d: 'Both A and C'
         },
         answer: 'd'
-    },  {
+    },  
+    
+    {
         questionText: 'QUESTION 5: What are the components of .addEventListener and what order do they go in?',
         choices: {
             a:'(eventListener, eventHandler)', 
@@ -186,4 +189,5 @@ function showAnswers() {
 startButton.addEventListener('click', startGame);
 
 // Run showAnswer when the submit answer button is clicked
-quizButton.addEventListener('click', showAnswers)
+answerButton.addEventListener('click', showAnswers)
+
