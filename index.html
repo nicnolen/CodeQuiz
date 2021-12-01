@@ -29,20 +29,35 @@
             <section class="hide" id="quiz-box">
                 <div id="timer"></div>
                 <h2>Quiz</h2>
-                <div class="quiz">
-                    <ul class="question-list" id="question-list">
-                        <li class="choice-list"></li>
-                    </ul>
+                <div class="btn btn-warning" id="questionButtons">
+                    <h3 class="text-center">Question: <span id="questionNumber"></span></h3>
+
+                    <button type="button" class="choiceButton1 btn btn-outline-dark">Choice 1</button>
+                    <button type="button" class="choiceButton2 btn btn-outline-dark">Choice 2</button>
+                    <button type="button" class="choiceButton3 btn btn-outline-dark">Choice 3</button>
+                    <button type="button" class="choiceButton4 btn btn-outline-dark">Choice 4</button>
+                    <div class="answer"></div>
                 </div>
-                <!-- Buttons to submit (evaluate) the quiz or move onto the next q -->
+                <!-- Button to move to the next question -->
                 <div class="navigation">
-                    <button type = "button" class="question btn btn-primary">Next Question</button>
-                    <button type="button" class="answer btn btn-danger">Submit Quiz</button>
+                    <button type="button" class="next btn btn-primary">Next Question</button>
                 </div>
+                <div id="explanation"></div>
             </section>
             <section class="hide" id="end-box">
                 <h2>End of Quiz</h2>
-                <button type="button" class="score btn btn-primary">Submit</button>
+                <button type="button" class="score btn btn-primary">See Results</button>
+            </section>
+            <section class="hide" id="score-box">
+                <!-- Registration form at the end of the game -->
+                <h2>Final Score:<span id="playersFinalScoreDisplay"></span></h2>
+
+                <label>TYPE INITIALS</label>
+                <input type="text" id="playerInitials" placeholder="NN"/>
+
+                <div id="validationMsg"></div>
+
+                <button type="button" class="btn btn-success" id="highScoreButton">SUBMIT SCORE</button>
             </section>
         </main>
     </div>
