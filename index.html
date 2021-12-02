@@ -15,6 +15,7 @@
 <body>
     <div class="container">
         <header>
+            <a href="highscores.html">High Scores</a>
             <h1>Code Quiz</h1>
             <p>
                 This quiz is designed to test your coding knowledge. The quiz will be 5 multiple choice questions with 4 possible answer choices. You will have 60 seconds to answer as many questions as you can. Be careful, 2 seconds will be subtracted from your time for each incorrect answer! Click the start button to start the quiz. 
@@ -30,7 +31,7 @@
                 <div id="timer"></div>
                 <h2>Quiz</h2>
                 <div class="btn btn-warning" id="questionButtons">
-                    <h3 class="text-center">Question: <span id="questionNumber"></span></h3>
+                    <h3 class="text-center"><span id="questionNumber"></span></h3>
 
                     <button type="button" class="choiceButton1 btn btn-outline-dark">Choice 1</button>
                     <button type="button" class="choiceButton2 btn btn-outline-dark">Choice 2</button>
@@ -38,15 +39,11 @@
                     <button type="button" class="choiceButton4 btn btn-outline-dark">Choice 4</button>
                     <div class="answer"></div>
                 </div>
-                <!-- Button to move to the next question -->
-                <div class="navigation">
-                    <button type="button" class="next btn btn-primary">Next Question</button>
-                </div>
                 <div id="explanation"></div>
             </section>
             <section class="hide" id="end-box">
                 <h2>End of Quiz</h2>
-                <button type="button" class="score btn btn-primary">See Results</button>
+                <button type="button" class="results btn btn-primary">See Results</button>
             </section>
             <section class="hide" id="score-box">
                 <!-- Registration form at the end of the game -->
@@ -61,6 +58,6 @@
             </section>
         </main>
     </div>
-    <script src="assets/script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
