@@ -41,6 +41,9 @@ var timer = 0;
 // Number of questions correct
 var numCorrect = 0;
 
+// Total number of high scores
+var numberHighScores = 10;
+
 // Get an array in local storage that is parsed OR an empty array
 var highScoreArr = JSON.parse(localStorage.getItem("highScoreArr")) || [];
 
@@ -203,20 +206,20 @@ function saveScore() {
     var scoreObject = {
         initials: initials.value,
         score: numCorrect
-    }
+    };
 
     highScoreArr.push(scoreObject);
 
     highScoreArr.sort(function (a,b) {
         // b.score - a.score puts the scores in reverse
         return b.score - a.score;
-    })
+    });
 
     if (highScoreArr.length > 10) {
-        // localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
+        localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
         highScoreArr.pop();
-        window.location.href="highscores.html"
-    } 
+    }
+    window.location.href="highscores.html" 
 };
 
 // takes you to the game over card

@@ -1,9 +1,10 @@
 var highScoreArr=JSON.parse(localStorage.getItem("highScoreArr"))
+console.log(highScoreArr);
 function assortScore() {
     highScoreArr.sort(function (a,b) {
         // b.score - a.score puts the scores in reverse
         return b.score - a.score;
-    })
+    });
     buildHighScore();
 };
 
