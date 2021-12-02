@@ -216,12 +216,16 @@ function saveScore() {
     });
 
     if (highScoreArr.length > 10) {
-        localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
         highScoreArr.pop();
+        localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
+    }
+    else {
+        localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
     }
     window.location.href="highscores.html" 
 };
 
+console.log(saveScore);
 // takes you to the game over card
 function gameOver() {
     // clears the time 
