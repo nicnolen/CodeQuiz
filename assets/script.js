@@ -10,6 +10,8 @@ var quizBox = document.getElementById('quiz-box');
 var questionButtons = document.getElementById('questionButtons');
 // current question being displayed
 var questionNumber = document.getElementById('questionNumber')
+// button for next question
+var nextButton = document.querySelector('.next');
 
 // answer choices and answer buttons
 var choiceButton1 = document.querySelector('.choiceButton1')
@@ -20,14 +22,11 @@ var answer = document.querySelector('.answer')
 
 // results
 var resultsBox = document.getElementById('end-box');
-var resultsButton = document.querySelector('.results');
+var resultsButton = document.querySelector('.score');
 
 // highScoreBox
 var highScoreBox = document.getElementById('score-box')
 var highScoreButton = document.getElementById('highScoreButton')
-
-// set initials to playerInitials
-var initials = document.getElementById('playerInitials');
 
 // Reference unordered list with class of 'explanation' to show if answer is right or wrong
 var explanationEl  = document.getElementById('explanation');
@@ -41,59 +40,56 @@ var timer = 0;
 // Number of questions correct
 var numCorrect = 0;
 
-// Get an array in local storage that is parsed OR an empty array
-var highScoreArr = JSON.parse(localStorage.getItem("highScoreArr")) || [];
+// questions index
+var i = 0;
 
 // Create a questions array
 var questions = [
     {
         questionText: 'What does the push() method do?',
-        choice1: "Adds any content between the parenthesis to the end of the specified array", 
-        choice2: "Removes the last element of an array and returns that element", 
-        choice3: "Removes the first element from an array and returns that removed element", 
-        choice4: "Adds any content between the parenthesis to the start of the specified array",
-        answer: "Adds any content between the parenthesis to the end of the specified array"
+        choice1: "a: 'Adds any content between the parenthesis to the end of the specified array'", 
+        choice2: "b: 'Removes the last element of an array and returns that element'", 
+        choice3: "c: 'Removes the first element from an array and returns that removed element'", 
+        choice4: "d: 'Adds any content between the parenthesis to the start of the specified array'",
+        answer: "a: 'Adds any content between the parenthesis to the end of the specified array'"
     },
 
     {
         questionText: 'What does the parseInt() function do?',
-        choice1: "Converts a number to a JSON string", 
-        choice2: "Converts a number to a string", 
-        choice3: "Converts a string to a number", 
-        choice4: "Converts a JSON string to a number",
-        answer: "Converts a string to a number",
+        choice1: "a:'Converts a number to a JSON string'", 
+        choice2: "b: 'Converts a number to a string'", 
+        choice3: "c: 'Converts a string to a number'", 
+        choice4: "d: 'Converts a JSON string to a number'",
+        answer: "c: 'Converts a string to a number'",
     },  
     
     {
         questionText: 'What is JavaScript responsible for on a webpage?',
-        choice1: "The structure of the page", 
-        choice2: "The design of the page", 
-        choice3: "Version control", 
-        choice4: "The behavior of the page",
-        answer: "The behavior of the page",
+        choice1: "a:'The structure of the page'", 
+        choice2: "b: 'The design of the page'", 
+        choice3: "c: 'Version control'", 
+        choice4: "d: 'The behavior of the page'",
+        answer: "d: 'The behavior of the page'",
     },  
     
     {
         questionText: 'How do you save array data to localStorage?',
-        choice1: "setItem()", 
-        choice2:"getItem", 
-        choice3:"JSON.stringify(array)", 
-        choice4: "Both A and C",
-        answer: "Both A and C",
+        choice1: "a:'setItem()'", 
+        choice2:"b:'getItem'", 
+        choice3:"c: 'JSON.stringify(array)'", 
+        choice4: "d: 'Both A and C'",
+        answer: "d: 'Both A and C'",
     },  
     
     {
         questionText: 'What are the components of .addEventListener and what order do they go in?',
-        choice1: "(eventListener, eventHandler)", 
-        choice2: "(eventHandler, eventListener)", 
-        choice3: "(event, function())", 
-        choice4: "(event, eventListener)",
-        answer: "(eventListener, eventHandler)",
+        choice1: "a:'(eventListener, eventHandler)'", 
+        choice2: "b:'(eventHandler, eventListener)'", 
+        choice3: "c: '(event, function())'", 
+        choice4: "d: '(event, eventListener)'",
+        answer: "a:'(eventListener, eventHandler)'",
     },
 ];
-
-// questions index
-var i = 0;
 
 // FUNCTIONS
 function startGame() {
@@ -113,9 +109,7 @@ function startGame() {
         if(timeLeft <= 0) {
             clearInterval(countdown); // clearInterval stops the countdown function from running
             document.getElementById('timer').textContent = "Time's up!";
-
-            // run game over function
-            gameOver;
+            gameOver();
         } 
         // if timeLeft is 1, change display the timeLeft and add second
         else if (timeLeft === 1) {
@@ -128,11 +122,30 @@ function startGame() {
         timeLeft--; // decrease the timer by 1 every second (1000ms = 1s)
     }, 1000);
     
+    // runs gameEnds function if timer runs out
+    if (timeLeft <= 0) {
+        gameOver;
+    }
     // add questions
-    showQuestions();
+    continueGame();
 };
 
-
+// Check to see if the game should end or keep going
+function continueGame() {
+    if (i === (questions.length -1)) {
+        clearInterval(timer);
+        // Hide the questions
+        quizBox.classList.add('hide');
+        resultsBox.classList.remove('hide');
+        resultsBox.textContent = 'The quiz is done! Lets see how you did!'
+        resultsButton.addEventListener('click', function() {
+            gameEnds();
+        })
+    } else {
+        i++;
+        showQuestions();
+    }
+}
 
  // Function to display the question with 4 answer choices
 function showQuestions() {
@@ -142,29 +155,16 @@ function showQuestions() {
     choiceButton1.textContent = questions[i].choice1;
     choiceButton2.textContent = questions[i].choice2;
     choiceButton3.textContent = questions[i].choice3;
-    choiceButton4.textContent = questions[i].choice4;
+    choiceButton4.textContent = questions[i].choice4;  
+    console.log(showQuestions);   
 };
-
-// Check to see if the game should end or keep going
-function continueGame() {
-    if (i === (questions.length - 1)) {
-        clearInterval(timer);
-        // Hide the questions
-        quizBox.classList.add('hide');
-        resultsBox.classList.remove('hide');
-        resultsBox.textContent = 'The quiz is done! Lets see how you did!';
-        gameEnds();
-    } else {
-        i++;
-        showQuestions();
-    }
-}
 
 // set the text content of the unordered list to the answer
 function showAnswers(event) {
     // keep track of user answers
     var userAnswer = event.target.textContent;
     var correctAnswer = questions[i].answer;
+    console.log(event.target);
 
     // for each question
     if (event.target.matches('button')) {
@@ -172,52 +172,23 @@ function showAnswers(event) {
         // if the answer is correct
         if (userAnswer === correctAnswer) {
             // say correct
-             explanationEl.textContent = 'Correct! The answer is ' + correctAnswer;
+             explanationEl.textContent = 'Correct!'
 
             // add to the number correct
-            numCorrect++;
-
-            // continue the game
-            continueGame();
+            numCorrect ++;
         }
         // if the answer is wrong or blank
         else {
             // say what the correct answer is
-             explanationEl.textContent = 'Incorrect the correct answer is ' + correctAnswer;
+             explanationEl.textContent = 'Incorrect, the correct answer is ' + correctAnswer;
             
             // subtract 2 seconds for each incorrect answer
             timeLeft -= 2;
 
-            // subtract one from the number correct 
-            numCorrect - 1;
-
-            continueGame();
-
         }
-        
+        continueGame();
     }
 }
-
-// Add data to local storage
-function saveScore() {
-    var scoreObject = {
-        initials: initials.value,
-        score: numCorrect
-    }
-
-    highScoreArr.push(scoreObject);
-
-    highScoreArr.sort(function (a,b) {
-        // b.score - a.score puts the scores in reverse
-        return b.score - a.score;
-    })
-
-    if (highScoreArr.length > 10) {
-        // localStorage.setItem('highScoreArr', JSON.stringify(highScoreArr));
-        highScoreArr.pop();
-        window.location.href="highscores.html"
-    } 
-};
 
 // takes you to the game over card
 function gameOver() {
@@ -227,10 +198,12 @@ function gameOver() {
     quizBox.classList.add('hide');
     // display the gameOver card
     resultsBox.classList.remove('hide');
+    resultsButton.classList.remove('hide');
 };
 
 // END OF THE GAME  and display the scorecard
 function gameEnds() {
+
     highScoreBox.classList.remove('hide');
     playersFinalScoreDisplay.textContent = numCorrect + ' out of ' + questions.length;
 };
@@ -239,14 +212,15 @@ function gameEnds() {
 // Run startGame when the start button is clicked
 startButton.addEventListener('click', startGame);
 
-// Run gameEnds when the show results button is clicked
-resultsButton.addEventListener('click', gameEnds);
+// Run showAnswer when the Next Question button is clicked
+nextButton.addEventListener('click', showAnswers)
 
 // when the user answers a question, continue the game
 questionButtons.addEventListener('click', showAnswers);
 
-// when user clicks submit after entering initials, save to high score
-highScoreButton.addEventListener('click', saveScore)
-
+ // waits for click to take you to the scoreboard
+ resultsButton.addEventListener('click', function () {
+    gameEnds();
+});
 
 
