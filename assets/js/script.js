@@ -31,6 +31,8 @@ var initials = document.getElementById('playerInitials');
 
 // Reference unordered list with class of 'explanation' to show if answer is right or wrong
 var explanationEl  = document.getElementById('explanation');
+// add style
+explanationEl.classList.add('reason')
 
 // Counter starts counting down from 60 seconds
 var timeLeft = 60
@@ -155,6 +157,7 @@ function continueGame() {
         // Hide the questions
         quizBox.classList.add('hide');
         resultsBox.classList.remove('hide');
+        resultsBox.classList.add('resultsMessage');
         resultsBox.textContent = 'The quiz is done! Lets see how you did!';
         gameEnds();
     } else {
@@ -175,7 +178,7 @@ function showAnswers(event) {
         // if the answer is correct
         if (userAnswer === correctAnswer) {
             // say correct
-             explanationEl.textContent = 'Correct! The answer is ' + correctAnswer;
+             explanationEl.textContent = 'Correct!'
 
             // add to the number correct
             numCorrect++;
@@ -186,7 +189,7 @@ function showAnswers(event) {
         // if the answer is wrong or blank
         else {
             // say what the correct answer is
-             explanationEl.textContent = 'Incorrect the correct answer is ' + correctAnswer;
+             explanationEl.textContent = 'Incorrect the correct answer is: ' + correctAnswer;
             
             // subtract 2 seconds for each incorrect answer
             timeLeft -= 2;

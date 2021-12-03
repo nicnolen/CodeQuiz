@@ -12,6 +12,7 @@ var list = document.getElementById('highScoreList')
 function buildHighScore() {
     highScoreArr.forEach(score => {
         var li = document.createElement('li');
+        li.classList.add('highscores');
         li.textContent = score.initials + " " + score.score;
         list.appendChild(li);
     });
