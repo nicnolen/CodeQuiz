@@ -12,7 +12,7 @@ Created a short 5 question coding quiz that starts at 60 seconds and counts down
 ## Installation
 There is no installation required for this website. Simply click on the link below and you will be taken directly to the website!   
 
-Link:    
+Link: https://nicnolen.github.io/CodeQuiz/    
 
 When you click on the link, you should see a webpage similar to the one below.  
 
