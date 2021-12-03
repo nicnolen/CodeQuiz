@@ -1,5 +1,3 @@
-# CodeQuiz
-Timed coding quiz
 # Coding Quiz
 
 ## Description
