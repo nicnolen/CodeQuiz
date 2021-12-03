@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Scores</title>
+    <!-- Bootstrap is a styling library so everything looks the same. Should be above CSS so that CSS can overwrite any conflicts with Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!--LINKED CSS-->
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div id="highscore"></div>
+    <h2 class="scoresTitle">High Scores</h2>
+    <ol class="flex scoreList" id="highScoreList"></ol>
+    <a href="index.html" class="flex">
+        <button type="button" class="restart btn btn-success">Restart Quiz</button>
+    </a>
+    <script src="assets/js/scores.js"></script>   
+</body>
+</html>

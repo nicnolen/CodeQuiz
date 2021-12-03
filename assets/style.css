@@ -1,0 +1,194 @@
+/* GENERAL STYLES */
+* {
+    box-sizing: border-box;
+}
+
+/* Colors */
+:root {
+    --bg-body: rgba(218, 218, 218, 0.7);
+    --bg-blue: rgba(0, 0, 255, 0.9);
+    --bg-red: rgba(255, 0, 0, 0.7);
+    --primary-blue: #0000FF;
+    --primary-red: #FF0000;
+    --primary-green: #1C9400;
+    --primary-gold: #ecba5c;
+}
+
+/* Body */
+body {
+    background-color: var(--bg-body);
+}
+
+/* SELECTOR CLASSES */
+/* Main Title */
+h1 {
+    justify-content: center;
+    color: var(--primary-green);
+}
+
+header {
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* MORE SPECIFIC SELECTOR CLASSES */
+header p {
+    margin-top: 2vw;
+}
+
+/* UTILITY CLASSES */
+/* Flexbox */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* PSEUDO CLASSES */
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* SITEWIDE CLASSES */
+/* Hide elements */
+.hide {
+    display: none;
+}
+
+/* Style the container */
+.container {
+    width: 880px; /* Between 600-1000px is a good mid width for the screen */
+    margin: 0 auto; /* centers the text */
+}
+
+.scores {
+    justify-content: flex-start;
+    color: var(--primary-red);
+}
+
+/* Start Button */
+.start {
+    justify-content: center;
+    text-align: center;
+    flex: 1 25%;
+    
+}
+
+/* Instructions */
+.instructions {
+    justify-content: center;
+    padding: 1vw 2vw;
+}
+
+/* timer */
+.time {
+    color: var(--primary-red);
+    background-color: var(--bg-blue);
+    justify-content: center;
+    margin-left: 70%;
+    padding: 1.5vw;
+    font-size: 1.5vw; 
+    text-align: center;
+}
+
+/* Quiz Title */
+.quiz-title {
+    justify-content: center;
+    color: var(--primary-green);
+}
+
+/* Question choice buttons */
+.questions {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 1 25%;
+    margin-top: 2vw;
+    max-width: 100%;
+}
+
+/* Explanation of why a question is right or wrong */
+.reason {
+    color: var(--primary-blue);
+    font-size: 2vw;
+}
+
+/* Final score */
+.finalScore {
+    color: var(--primary-gold);
+    background-color: var(--bg-blue);
+    justify-content: center;
+    padding: 2vw;
+}
+
+/* Final score score (1 out of 4) */
+.finalScore span {
+    margin-left: 1vw;
+}
+
+/* Results Message */
+.resultsMessage {
+    background-color: var(--primary-gold);
+    text-align: center;
+    font-weight: bold;
+    margin: 1vw auto 2vw auto;
+    padding: 1vw;
+    font-size: 1.3vw;
+}
+
+/* Keeps the label and input together */
+.playerForm {
+    margin: 3vw auto 2vw auto;
+}
+
+/* Initals */
+.initials {
+    background-color: var(--bg-red);
+    font-weight: bolder;
+}
+
+/* Submit initials button */
+.submit {
+    justify-content: center;
+    text-align: center;
+    flex: 1 25%;
+    margin: 2vw auto;
+}
+
+/* High score title */
+.scoresTitle {
+    background-color: var(--bg-red);
+    color: var(--primary-blue);
+    text-align: center;
+    padding-bottom: .5vw;
+    margin: 0 auto;
+}
+
+/* Score List */
+.scoreList {
+    color: var(--primary-gold);
+    background-color: var(--bg-blue);
+    flex-direction: column;
+    align-items: center;
+    font-weight: bolder;
+    margin: 0 auto;
+}
+
+/* High Scores */
+.highscores {
+    padding: 1vw;
+    border: 3px solid #DADADA;
+    margin: 2vw;
+}
+
+/* Restart quiz button */
+.restart {
+    justify-content: center;
+    text-align: center;
+    flex: 1 25%;
+    margin: 0, auto;
+}
