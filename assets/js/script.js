@@ -117,10 +117,12 @@ function startGame() {
     var countdown = setInterval(function(){
         if(timeLeft <= 0) {
             clearInterval(countdown); // clearInterval stops the countdown function from running
-            document.getElementById('timer').textContent = "Time's up!";
-
+            quizBox.classList.add('hide');
+            resultsBox.classList.remove('hide');
+            resultsBox.classList.add('resultsMessage');
+            resultsBox.textContent = "Time's up!";
             // run game over function
-            gameOver;
+            gameEnds();
         } 
         // if timeLeft is 1, change display the timeLeft and add second
         else if (timeLeft === 1) {
