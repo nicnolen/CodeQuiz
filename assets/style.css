@@ -254,19 +254,19 @@ nav .scores {
 @media screen and (min-width: 500px) {
   /* Body */
   body {
-    max-height: 90vh;
+    max-height: 100vh;
   }
 
   /* Header */
   header {
-    overflow: hidden;
     max-height: 90vh;
+    overflow: hidden;
   }
 
   /* Main page title */
   h1 {
     margin-top: 1.5vh;
-    font-size: 4vw;
+    font-size: 2vw;
   }
 
   a:hover {
@@ -281,6 +281,7 @@ nav .scores {
   /* Instructions */
   .instructions {
     font-size: 3vw;
+    max-height: 20vh;
   }
 
   /* Start Instruction Text */
@@ -291,6 +292,7 @@ nav .scores {
   /* Start Button */
   .startBtn {
     font-size: 4vw;
+    margin-bottom: 2vw;
   }
   /* Results Message */
   .resultsMessage {
