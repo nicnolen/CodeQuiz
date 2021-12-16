@@ -7,7 +7,6 @@ Created a short 5 question coding quiz that starts at 60 seconds and counts down
 * HTML
 * CSS
 * JavaScript
-* BootStrap
 
 ## Installation
 There is no installation required for this website. Simply click on the link below and you will be taken directly to the website!   
