@@ -260,6 +260,7 @@ nav .scores {
   /* Header */
   header {
     max-height: 90vh;
+    overflow: hidden;
   }
 
   /* Main page title */
