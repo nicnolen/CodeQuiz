@@ -1,194 +1,324 @@
 /* GENERAL STYLES */
-* {
-    box-sizing: border-box;
-}
-
 /* Colors */
 :root {
-    --bg-body: rgba(218, 218, 218, 0.7);
-    --bg-blue: rgba(0, 0, 255, 0.9);
-    --bg-red: rgba(255, 0, 0, 0.7);
-    --primary-blue: #0000FF;
-    --primary-red: #FF0000;
-    --primary-green: #1C9400;
-    --primary-gold: #ecba5c;
+  --bg-black: rgb(0, 0, 0);
+  --bg-gold: #ecba5c;
+  --bg-blue: rgba(0, 0, 255, 0.726);
+  --bg-red: rgba(255, 0, 0, 0.7);
+  --bg-green: #1c9400;
+  --bg-purple: #6a0dad;
+  --bg-white: #f1f1f1;
+  --primary-blue: #0000ff;
+  --primary-red: #ff0000;
+  --primary-green: #1c9400;
+  --primary-gold: #ecba5c;
+  --primary-purple: #6a0dad;
+  --primary-white: #f1f1f1;
 }
 
-/* Body */
+/* How the page deals with padding and margins */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the body */
 body {
-    background-color: var(--bg-body);
+  background-color: var(--bg-black);
+  max-height: 93.5vh;
 }
 
 /* SELECTOR CLASSES */
 /* Main Title */
 h1 {
-    justify-content: center;
-    color: var(--primary-green);
+  justify-content: center;
+  padding-top: 2vh;
+  color: var(--primary-red);
 }
 
+/* Header */
 header {
-    justify-content: center;
-    align-items: center;
+  min-height: 93.5vh;
+  background-color: var(--bg-black);
+}
 
+/* Buttons */
+button {
+  border-radius: 8px; /* Makes buttons rounded */
 }
 
 /* MORE SPECIFIC SELECTOR CLASSES */
 header p {
-    margin-top: 2vw;
+  margin-top: 2vw;
 }
 
 /* UTILITY CLASSES */
 /* Flexbox */
 .flex {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* PSEUDO CLASSES */
+/* Hide elements */
+.hide {
+  display: none;
+}
+
+/* PSEUDO CLASS UTILITY CLASSES */
 a:link {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /* SITEWIDE CLASSES */
-/* Hide elements */
-.hide {
-    display: none;
+/* Style the navigation container */
+nav.score-container {
+  justify-content: flex-start;
+  text-align: left;
+  padding: 1vw;
+  background-color: var(--bg-green);
 }
-
-/* Style the container */
-.container {
-    width: 880px; /* Between 600-1000px is a good mid width for the screen */
-    margin: 0 auto; /* centers the text */
-}
-
-.scores {
-    justify-content: flex-start;
-    color: var(--primary-red);
-}
-
-/* Start Button */
-.start {
-    justify-content: center;
-    text-align: center;
-    flex: 1 25%;
-    
+/* Style the high scores navigation link */
+nav .scores {
+  color: var(--primary-gold);
 }
 
 /* Instructions */
 .instructions {
-    justify-content: center;
-    padding: 1vw 2vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 60vh;
+  padding: 1vw 2vw;
+  font-size: 6vw;
+  color: var(--primary-white);
+}
+
+/* Start Instruction text */
+.start-text {
+  text-align: center;
+  font-size: 5vw;
+  margin-bottom: 2vh;
+  color: var(--primary-white);
+}
+
+/* Start Button */
+.startBtn {
+  justify-content: center;
+  text-align: center;
+  font-size: 6vw;
+  flex: 1 25%; /* Expands the button the length of the screen */
+  color: var(--primary-blue);
+  background-color: var(--bg-green);
+}
+
+/* quiz box */
+.quiz-box {
+  min-height: 90vh;
 }
 
 /* timer */
 .time {
-    color: var(--primary-red);
-    background-color: var(--bg-blue);
-    justify-content: center;
-    margin-left: 70%;
-    padding: 1.5vw;
-    font-size: 1.5vw; 
-    text-align: center;
+  justify-content: center;
+  margin-left: 70%;
+  padding: 1.5vw;
+  font-size: 1.5vw;
+  text-align: center;
+  color: var(--primary-blue);
+  background-color: var(--bg-gold);
 }
 
 /* Quiz Title */
 .quiz-title {
-    justify-content: center;
-    color: var(--primary-green);
+  justify-content: center;
+  font-size: 4vw;
+  color: var(--primary-white);
+}
+
+/* Question */
+.question-number {
+  font-size: 3vw;
+  color: var(--primary-red);
+}
+/* Question choice container */
+.questions {
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 1 25%;
+  max-width: 100%;
+  min-height: 60vh;
+  margin-top: 2vw;
+  background-color: var(--bg-blue);
 }
 
 /* Question choice buttons */
-.questions {
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    flex: 1 25%;
-    margin-top: 2vw;
-    max-width: 100%;
+.choiceBtn {
+  background-color: var(--bg-green);
+  color: var(--primary-gold);
+  font-size: 2vw;
+  padding: 1vw;
+  margin: 0.5vh auto;
 }
 
 /* Explanation of why a question is right or wrong */
 .reason {
-    color: var(--primary-blue);
-    font-size: 2vw;
+  text-align: center;
+  font-size: 2vw;
+  color: var(--primary-white);
 }
 
 /* Final score */
 .finalScore {
-    color: var(--primary-gold);
-    background-color: var(--bg-blue);
-    justify-content: center;
-    padding: 2vw;
+  justify-content: center;
+  padding: 2vw;
+  color: var(--primary-blue);
+  background-color: var(--bg-white);
 }
 
 /* Final score score (1 out of 4) */
 .finalScore span {
-    margin-left: 1vw;
+  margin-left: 1vw;
 }
 
 /* Results Message */
 .resultsMessage {
-    background-color: var(--primary-gold);
-    text-align: center;
-    font-weight: bold;
-    margin: 1vw auto 2vw auto;
-    padding: 1vw;
-    font-size: 1.3vw;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto 2vw auto;
+  padding: 1vw;
+  font-size: 1.3vw;
+  background-color: var(--primary-gold);
 }
 
 /* Keeps the label and input together */
 .playerForm {
-    margin: 3vw auto 2vw auto;
+  margin: 3vw auto 2vw auto;
 }
 
 /* Initals */
 .initials {
-    background-color: var(--bg-red);
-    font-weight: bolder;
+  font-weight: bolder;
+  background-color: var(--bg-red);
 }
 
 /* Submit initials button */
 .submit {
-    justify-content: center;
-    text-align: center;
-    flex: 1 25%;
-    margin: 2vw auto;
+  justify-content: center;
+  text-align: center;
+  flex: 1 25%;
+  margin: 2vw auto;
+  font-size: 6vw;
+  color: var(--primary-blue);
+  background-color: var(--bg-green);
 }
 
 /* High score title */
 .scoresTitle {
-    background-color: var(--bg-red);
-    color: var(--primary-blue);
-    text-align: center;
-    padding-bottom: .5vw;
-    margin: 0 auto;
+  text-align: center;
+  padding: 1.5vw 0;
+  margin: 0 auto;
+  background-color: var(--bg-red);
+  color: var(--primary-blue);
 }
 
 /* Score List */
 .scoreList {
-    color: var(--primary-gold);
-    background-color: var(--bg-blue);
-    flex-direction: column;
-    align-items: center;
-    font-weight: bolder;
-    margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bolder;
+  margin: 0 auto;
+  color: var(--primary-gold);
+  background-color: var(--bg-blue);
 }
 
 /* High Scores */
 .highscores {
-    padding: 1vw;
-    border: 3px solid #DADADA;
-    margin: 2vw;
+  padding: 1vw;
+  border: 3px solid #dadada;
+  margin: 2vw;
 }
 
 /* Restart quiz button */
 .restart {
-    justify-content: center;
-    text-align: center;
-    flex: 1 25%;
-    margin: 0, auto;
+  justify-content: center;
+  text-align: center;
+  flex: 1 25%;
+  font-size: 6vw;
+  color: var(--primary-blue);
+  background-color: var(--bg-green);
+}
+
+/* Media Queries */
+/* For screens under 900px */
+@media screen and (min-width: 500px) {
+  /* Body */
+  body {
+    max-height: 90vh;
+  }
+
+  /* Header */
+  header {
+    overflow: hidden;
+    max-height: 90vh;
+  }
+
+  /* Main page title */
+  h1 {
+    margin-top: 1.5vh;
+    font-size: 4vw;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  /* Style the high scores navigation link when it is hovered */
+  nav .scores:hover {
+    color: var(--primary-blue);
+  }
+
+  /* Instructions */
+  .instructions {
+    font-size: 3vw;
+  }
+
+  /* Start Instruction Text */
+  .start-text {
+    font-size: 3vw;
+  }
+
+  /* Start Button */
+  .startBtn {
+    font-size: 4vw;
+  }
+  /* Results Message */
+  .resultsMessage {
+    font-size: 2vw;
+  }
+
+  /* Score */
+  .finalScore {
+    font-size: 4vw;
+  }
+
+  /* Label */
+  .initials {
+    font-size: 3vw;
+  }
+
+  /* Input form */
+  .playerForm {
+    font-size: 3vw;
+  }
+
+  /* Score Button */
+  .submit {
+    font-size: 4vw;
+  }
+
+  /* Restart button */
+  .restart {
+    font-size: 4vw;
+  }
 }
