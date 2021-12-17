@@ -16,6 +16,5 @@ Link: https://nicnolen.github.io/CodeQuiz/
 When you click on the link, you should see a webpage similar to the one below.  
 
 ![JavaScript Quiz Homepage](https://user-images.githubusercontent.com/88728912/146285475-46ac3b47-f6c3-48a6-93a7-b753446969ac.png)
-png)
 
 If you see this page, you're good to go!
